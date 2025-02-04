@@ -1,6 +1,7 @@
 
 <?php
 require_once __DIR__.'/../config/autoload.php';
+require_once __DIR__.'/../config/autoloadclasse.php';
 class AuthControllers{
     function register(){
         if($_SERVER['REQUEST_METHOD']=='POST'){

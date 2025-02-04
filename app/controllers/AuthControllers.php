@@ -24,5 +24,37 @@ class AuthControllers{
     function connection(){
         require_once __DIR__.'/../views/connexion.php';
     }
-    
+
+    function login()
+    {
+
+        if($_SERVER['REQUEST_METHOD']=='POST'){
+            $role= user::RoleMail($_POST['email']);
+
+            if($role){
+                if($role=='1'){
+                    Etudiant::login($_POST['email'],$_POST['password']);
+                    $this->versPageEtudiant();
+                }
+                if($role =='2' ){
+                    Enseignant::login($_POST['email'],$_POST['password']);
+                    $this->versPageEnseignant();
+                }else{
+                    admin::login($_POST['email'],$_POST['password']);
+                    $this->versPageAdmin();
+                }
+            }
+        }
+    }
+
+    function versPageEtudiant()
+    {
+       require_once __DIR__.'/../views/cours.php';
+    }
+    function versPageEnseignant(){
+        require_once __DIR__.'/../views/mesCours.php';
+    }
+    function versPageAdmin(){
+        require_once __DIR__.'/../views/gestionCentenu.php';
+    }
 }

@@ -55,7 +55,7 @@ abstract class user {
     public static function MailExist($email) {
         $db = database::getInstance()->getConnection();
         try {
-            $stmt = $db->prepare("SELECT COUNT(*) as count FROM user WHERE email = ?");
+            $stmt = $db->prepare("SELECT COUNT(*) as count FROM \"user\"  WHERE email = ?");
             $stmt->execute([$email]);
             $result = $stmt->fetch();
             return $result['count'] > 0;
@@ -67,7 +67,7 @@ abstract class user {
     public static function RoleMail($email) {
         $db = database::getInstance()->getConnection();
         try {
-            $stmt = $db->prepare("SELECT role FROM user WHERE email=?");
+            $stmt = $db->prepare("SELECT role FROM \"user\" WHERE email=?");
             if ($stmt->execute([$email])) {
                 $result = $stmt->fetch();
                 if ($result) {
@@ -89,7 +89,7 @@ abstract class user {
     private function  StatusEnAttente($iduser){
         $db = database::getInstance()->getConnection();
         try{
-            $stmt=$db->prepare("UPDATE user set status='en attente' where  iduser=?");
+            $stmt=$db->prepare("UPDATE \"user\" set status='en attente' where  iduser=?");
             $stmt->execute([$iduser]);
             
           }catch(PDOException $e){
@@ -99,7 +99,7 @@ abstract class user {
     private function  StatusActiveEtudiant($iduser){
         $db = database::getInstance()->getConnection();
         try{
-            $stmt=$db->prepare("UPDATE user set EstActive=true where  iduser=?");
+            $stmt=$db->prepare("UPDATE \"user\"  set EstActive=true where  iduser=?");
             $stmt->execute([$iduser]);
             
           }catch(PDOException $e){

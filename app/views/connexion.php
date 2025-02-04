@@ -1,4 +1,7 @@
-
+<?php
+require_once __DIR__.'/../config/autoload.php';
+require_once __DIR__.'/../config/config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +25,7 @@
 <div class="p-4">
 <div class="bg-white rounded-2xl shadow-xl p-8">
                 <h2 class="text-3xl font-bold mb-8 text-center">Connexion</h2>
-                <form class="space-y-6" action="../traitement/authentification.php" method="POST">
+                <form class="space-y-6" action="<?= URL ?>/AuthControllers/login" method="POST">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
                         <input 

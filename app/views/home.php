@@ -34,7 +34,7 @@ require_once(__DIR__ . '/../config/config.php');
                 
                 <div class="flex items-center space-x-4">
                     <button class="px-4 py-2 rounded-lg bg-white hover:bg-gray-100">
-                        <a href="app/views/connexion.php">Connexion</a>
+                        <a href="<?= URL ?>/AuthControllers/connection">Connexion</a>
                     </button>
                     <button class="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700">
                     <a href="<?= URL ?>/AuthControllers/render">Inscription</a>

@@ -31,24 +31,24 @@ class Enseignant extends user {
                if($result['status']=='en attente'){
                 Session::validateSession($result);
                 $_SESSION['error'] = "votre compte est  en cours de traitement !"; 
-                header('location: ../front/connexion.php');
+                header('location: ../views/connexion.php');
                 exit();
                }
                if(password_verify($password,$result['password'])){
                     Session::validateSession($result); 
-                    header('location: ../front/mesCours.php');
-                    exit();
+//                    header('location: ../front/mesCours.php');
+//                    exit();
                }
                else{
                    Session::ActiverSession();
                    $_SESSION['error'] = "Mot de passe incorrect !"; 
-                   header('location: ../front/mesCours.php'); 
+                   header('location: ../views/connexion.php');
                    exit();
                }
            }else{
                Session::ActiverSession();
                $_SESSION['error'] = "Mail n'exist pas !"; 
-               header('location: ../front/connexion.php'); 
+               header('location: ../views/connexion.php');
                exit();
            }
         } catch(PDOException $e){

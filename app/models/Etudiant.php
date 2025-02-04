@@ -6,24 +6,24 @@ require_once 'session.php';
     public static function login($Email,$password){
          $db=database::getInstance()->getConnection();
          try{
-            $stmt=$db->prepare("SELECT * From user where email=? ");
+            $stmt=$db->prepare("SELECT * From \"user\" where email=? ");
             if($stmt->execute([$Email])){
                 $result = $stmt->fetch(); 
-                if($result['EstActive']==false){
-                    Session::validateSession($result);
-                    $_SESSION['error'] = "votre compte est  Binder !"; 
-                    header('location: ../front/connexion.php');
-                    exit();
-                   }   
+//                if($result['EstActive']==false){
+//                    Session::validateSession($result);
+//                    $_SESSION['error'] = "votre compte est  Binder !";
+//                    header('location: ../views/connexion.php');
+//                    exit();
+//                   }
                 if(password_verify($password,$result['password'])){
                      Session::validateSession($result); 
-                     header('location: ../front/cours.php');
-                     exit();
+//                     header('location: ../views/cours.php');
+//                     exit();
                 }
                 else{
                     Session::ActiverSession();
                     $_SESSION['error'] = "Mot de passe incorrect !"; 
-                    header('location: ../front/connexion.php'); 
+                    header('location: ../views/connexion.php');
                     exit();
                 }
             }else{
@@ -45,7 +45,7 @@ public static  function  getAlletudiants(){
     $etudiants=[];
     $db=database::getInstance()->getConnection();
     try {
-        $stmt=$db->prepare("SELECT * FROM user where role= 1");
+        $stmt=$db->prepare("SELECT * FROM \"user\"  where role= 1");
        if($stmt->execute())
        {
         $results = $stmt->fetchAll();
@@ -73,7 +73,7 @@ public static  function  getAlletudiants(){
 public function updateStatusEtudiant($newstatus) {
     $db = database::getInstance()->getConnection();
     try {
-        $stmt = $db->prepare("UPDATE user SET EstActive = ? WHERE iduser = ?");
+        $stmt = $db->prepare("UPDATE \"user\"  SET EstActive = ? WHERE iduser = ?");
         $stmt->execute([$newstatus, $this->id]);
         return true; // Retourne true si l'opération a réussi
     } catch (\Throwable $th) {

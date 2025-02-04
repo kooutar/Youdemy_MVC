@@ -125,15 +125,15 @@ abstract class user {
             $user->StatusEnAttente($user->id);
             Session::ActiverSession();
             $_SESSION['success'] = "inscription avec success !"; 
-            header('location: ../front/connexion.php'); 
-            exit();
+            // header('Location: /MVCyoudemy/app/views/connexion.php');
+            // exit();
         }if($role=='1'){
             $user->insertion();
             $user->StatusActiveEtudiant($user->id);
             Session::ActiverSession();
             $_SESSION['success'] = "inscription avec success !"; 
-            header('location: ../front/connexion.php'); 
-            exit();
+            // header('Location: /MVCyoudemy/connexion');
+            // exit();          
         }
     }
 

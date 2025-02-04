@@ -13,11 +13,10 @@ class AuthControllers{
                 $Enseignant=new Enseignant($_POST['nom'],$_POST['prenom'],$_POST['email'],2,null,$_POST['password']);
                 $Enseignant::inscrire($Enseignant->nom,$Enseignant->prenom,$Enseignant->email,$Enseignant->role,$Enseignant->password);   
             } 
-           
+            $this->connection();
+
         }
-        $this->redrectionConnection();
-        // var_dump($_POST);  // Affiche les données envoyées
-        // die();
+     
         
     }
 
@@ -25,7 +24,7 @@ class AuthControllers{
         require_once __DIR__.'/../views/registre.php';
     }
 
-    function redrectionConnection(){
+    function connection(){
         require_once __DIR__.'/../views/connexion.php';
     }
     

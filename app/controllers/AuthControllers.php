@@ -30,7 +30,6 @@ class AuthControllers{
 
         if($_SERVER['REQUEST_METHOD']=='POST'){
             $role= user::RoleMail($_POST['email']);
-
             if($role){
                 if($role=='1'){
                     Etudiant::login($_POST['email'],$_POST['password']);
@@ -49,7 +48,12 @@ class AuthControllers{
 
     function versPageEtudiant()
     {
-       require_once __DIR__.'/../views/cours.php';
+        if (isset($_SESSION['error'])){
+            require_once __DIR__.'/../views/connexion.php';
+        }else{
+            require_once __DIR__.'/../views/cours.php';
+        }
+
     }
     function versPageEnseignant(){
         require_once __DIR__.'/../views/mesCours.php';

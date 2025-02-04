@@ -23,14 +23,14 @@ require_once 'session.php';
                 else{
                     Session::ActiverSession();
                     $_SESSION['error'] = "Mot de passe incorrect !"; 
-                    header('location: ../views/connexion.php');
-                    exit();
+//                    header('location: ../views/connexion.php');
+//                    exit();
                 }
             }else{
                 Session::ActiverSession();
                 $_SESSION['error'] = "Mail n'exist pas !"; 
-                header('location: ../front/connexion.php'); 
-                exit();
+//                header('location: ../views/connexion.php');
+//                exit();
             }
            
             

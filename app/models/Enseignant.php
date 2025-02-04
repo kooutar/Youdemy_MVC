@@ -42,14 +42,14 @@ class Enseignant extends user {
                else{
                    Session::ActiverSession();
                    $_SESSION['error'] = "Mot de passe incorrect !"; 
-                   header('location: ../views/connexion.php');
-                   exit();
+//                   header('location: ../views/connexion.php');
+//                   exit();
                }
            }else{
                Session::ActiverSession();
                $_SESSION['error'] = "Mail n'exist pas !"; 
-               header('location: ../views/connexion.php');
-               exit();
+//               header('location: ../views/connexion.php');
+//               exit();
            }
         } catch(PDOException $e){
            

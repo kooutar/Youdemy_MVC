@@ -1,5 +1,5 @@
-<?php 
-require_once '../autoload.php';
+<?php
+require_once __DIR__.'/../config/autoloadclasse.php';
 session::ActiverSession();
 if(!isset($_SESSION['userData']['iduser']) || $_SESSION['userData']['role']!=2){
     header('location: connexion.php');

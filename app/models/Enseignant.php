@@ -9,7 +9,7 @@ class Enseignant extends user {
     public static  function getStatusProf($email){
         $db = database::getInstance()->getConnection();
        try {
-        $stmt=$db->prepare("SELECT status from user where email=?  ");
+        $stmt=$db->prepare("SELECT status from \"user\"  where email=?  ");
         if($stmt->execute([$email])){
             $result =$stmt->fetch();
             return $result['status'] ;
@@ -25,14 +25,14 @@ class Enseignant extends user {
     public static function login($Email,$password){
         $db=database::getInstance()->getConnection();
         try{
-           $stmt=$db->prepare("SELECT * From user where email=?  ");
+           $stmt=$db->prepare("SELECT * From \"user\" where email=?  ");
            if($stmt->execute([$Email])){
                $result = $stmt->fetch();
                if($result['status']=='en attente'){
                 Session::validateSession($result);
                 $_SESSION['error'] = "votre compte est  en cours de traitement !"; 
-                header('location: ../views/connexion.php');
-                exit();
+//                header('location: ../views/connexion.php');
+//                exit();
                }
                if(password_verify($password,$result['password'])){
                     Session::validateSession($result); 
@@ -92,7 +92,7 @@ public static  function  getAllProf(){
     $prof=[];
     $db=database::getInstance()->getConnection();
     try {
-        $stmt=$db->prepare("SELECT * FROM user where role= 2");
+        $stmt=$db->prepare("SELECT * FROM \"user\" where role= 2");
        if($stmt->execute())
        {
         $results = $stmt->fetchAll();
@@ -119,7 +119,7 @@ public static  function  getAllProf(){
 public function updateStatus($newstatus) {
     $db = database::getInstance()->getConnection();
     try {
-        $stmt = $db->prepare("UPDATE user SET status = ? WHERE iduser = ?");
+        $stmt = $db->prepare("UPDATE \"user\" SET status = ? WHERE iduser = ?");
         $stmt->execute([$newstatus, $this->id]);
         return true; 
     } catch (\Throwable $th) {

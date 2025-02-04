@@ -56,7 +56,13 @@ class AuthControllers{
 
     }
     function versPageEnseignant(){
-        require_once __DIR__.'/../views/mesCours.php';
+
+        if (isset($_SESSION['error'])){
+            require_once __DIR__.'/../views/connexion.php';
+        }else{
+            require_once __DIR__.'/../views/mesCours.php';
+        }
+
     }
     function versPageAdmin(){
         require_once __DIR__.'/../views/gestionCentenu.php';

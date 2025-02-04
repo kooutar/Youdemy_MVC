@@ -1,7 +1,7 @@
 <?php 
 require_once 'user.php';
 require_once 'session.php';
-require_once 'interface.php';
+
 
 class Enseignant extends user {
     static $cours=[];

@@ -8,16 +8,13 @@ class AuthControllers{
             if($_POST['role']=='1'){
                     $etudiant = new Etudiant($_POST['nom'],$_POST['prenom'],$_POST['email'],1,null,$_POST['password']);
                     $etudiant::inscrire($etudiant->nom,$etudiant->prenom,$etudiant->email,$etudiant->role,$etudiant->password);
-               
+                    $this->connection();
             }else{
                 $Enseignant=new Enseignant($_POST['nom'],$_POST['prenom'],$_POST['email'],2,null,$_POST['password']);
-                $Enseignant::inscrire($Enseignant->nom,$Enseignant->prenom,$Enseignant->email,$Enseignant->role,$Enseignant->password);   
-            } 
-            $this->connection();
-
+                $Enseignant::inscrire($Enseignant->nom,$Enseignant->prenom,$Enseignant->email,$Enseignant->role,$Enseignant->password);
+                 $this->connection();
+            }
         }
-     
-        
     }
 
     function render(){

@@ -5,11 +5,10 @@ class database {
     private PDO $connection; 
 
     private function __construct() {
-        
-        $dsn = 'mysql:host=localhost;dbname=Youdemy';
-        $username = 'root';
-        $password = '';
 
+        $dsn = 'pgsql:host=localhost;dbname=yoydemy';
+        $username = 'postgres';
+        $password = 'kaoutar';
         try {
             $this->connection = new PDO(
                 $dsn,

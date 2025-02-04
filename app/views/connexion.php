@@ -74,7 +74,7 @@
 </html>
 
 <?php
-require_once '../config/autoload.php';
+require_once __DIR__.'/../config/autoloadclasse.php';
 Session::ActiverSession();
 if (isset($_SESSION['success'])) {
     $Message = $_SESSION['success'];

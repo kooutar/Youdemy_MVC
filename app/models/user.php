@@ -40,13 +40,11 @@ abstract class user {
     private function  insertion(){
         $db=database::getInstance()->getConnection();
         try {
-            
-                $stmt=$db->prepare("INSERT INTO user(nom, prenom, email, password, role)
-                                    Value(?,?,?,?,?)");
+
+            $stmt = $db->prepare("INSERT INTO \"user\" (nom, prenom, email, password, role)
+                              VALUES (?, ?, ?, ?, ?) RETURNING iduser");
                 $stmt->execute([$this->nom,$this->prenom,$this->email,$this->password,$this->role]);
                 $this->id=$db->lastInsertId();
-          
-
 
         } catch (PDOException $e) {
            $e->getMessage();

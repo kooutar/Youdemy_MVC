@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__.'/../config/autoloadclasse.php';
 require_once __DIR__.'/../config/autoload.php';
+require_once __DIR__.'/../config/config.php';
 session::ActiverSession();
 if(!isset($_SESSION['userData']['iduser']) || $_SESSION['userData']['role']!=2){
     header('location: connexion.php');
@@ -189,10 +190,9 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
                 </svg>
             </button>
         </div>
-
         <!-- Modal Body -->
         <div class="p-6">
-            <form class="space-y-6" action="../traitement/traitementProf.php" method="POST" enctype="multipart/form-data">
+            <form class="space-y-6" action="<?=URL?>/CoursController/ajoutCours" method="POST" enctype="multipart/form-data">
                 <!-- Titre du cours -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -234,7 +234,8 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
                         <select name="categorie" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B6FFA1] focus:border-transparent">
                            
                             <?php 
-                            $categories = categorie::affichecategorie();
+                             $CategorieController = new CategorieController();
+                            $categories=$CategorieController->getCategorie();
                             if (!empty($categories)) {
                                 foreach ($categories as $cat) {
                                     echo "<option value='{$cat['idcategorie']}'>{$cat['categorie']}</option>";

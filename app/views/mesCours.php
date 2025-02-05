@@ -1,9 +1,12 @@
 <?php
 require_once __DIR__.'/../config/autoloadclasse.php';
+require_once __DIR__.'/../config/autoload.php';
 session::ActiverSession();
 if(!isset($_SESSION['userData']['iduser']) || $_SESSION['userData']['role']!=2){
     header('location: connexion.php');
 }
+$prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['prenom'],$_SESSION['userData']['email'],$_SESSION['userData']['role'],$_SESSION['userData']['iduser']);
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -69,7 +72,9 @@ if(!isset($_SESSION['userData']['iduser']) || $_SESSION['userData']['role']!=2){
                     <tbody>
                         <!-- Sample data - Replace with PHP loop -->
                          <?php
-//                             require_once '../traitement/traitementProf.php';
+
+                           $coursController= new CoursController();
+                          $coursVedio = $coursController->getVedioCours($prof);
                            foreach($coursVedio as $cours){
                             ?>
                            
@@ -129,7 +134,8 @@ if(!isset($_SESSION['userData']['iduser']) || $_SESSION['userData']['role']!=2){
                     <tbody>
                         <!-- Sample data - Replace with PHP loop -->
                         <?php
-                             require_once '../traitement/traitementProf.php';
+                        $coursDocument= new CoursController();
+                        $coursDocument = $coursDocument->getDocumentCours($prof);
                              foreach($coursDocument as $cours){
                             ?>
                         <tr class="border-b">
@@ -158,10 +164,10 @@ if(!isset($_SESSION['userData']['iduser']) || $_SESSION['userData']['role']!=2){
                                     <input type="hidden" name="image" value="<?=$cours->image?>">
                                 <button name="delete"class="text-red-500 hover:text-red-700">Supprimer</button>
                                 </form>
-                               
+
                             </td>
                         </tr>
-                        <?php 
+                        <?php
                            }
                             ?>
                     </tbody>

@@ -69,7 +69,7 @@ if(!isset($_SESSION['userData']['iduser']) || $_SESSION['userData']['role']!=2){
                     <tbody>
                         <!-- Sample data - Replace with PHP loop -->
                          <?php
-                             require_once '../traitement/traitementProf.php';
+//                             require_once '../traitement/traitementProf.php';
                            foreach($coursVedio as $cours){
                             ?>
                            

@@ -60,6 +60,9 @@ class AuthControllers{
         if (isset($_SESSION['error'])){
             require_once __DIR__.'/../views/connexion.php';
         }else{
+            $CategorieController = new CategorieController();
+            $categories = $CategorieController->getCategorie();
+//            require 'views/mesCours.php';
             require_once __DIR__.'/../views/mesCours.php';
         }
 

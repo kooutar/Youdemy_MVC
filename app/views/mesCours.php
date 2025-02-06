@@ -232,11 +232,9 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
                             Catégorie
                         </label>
                         <select name="categorie" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#B6FFA1] focus:border-transparent">
-                           
-                            <?php 
-                             $CategorieController = new CategorieController();
-                            $categories=$CategorieController->getCategorie();
-                            if (!empty($categories)) {
+
+                            <?php
+                            if (isset($categories) && !empty($categories)) {
                                 foreach ($categories as $cat) {
                                     echo "<option value='{$cat['idcategorie']}'>{$cat['categorie']}</option>";
                                 }
@@ -337,6 +335,7 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
         </div>
     </div>
     <script>
+        console.log("Lancement du fetch...");
           const editButtons = document.querySelectorAll('.edit');
         const modal = document.querySelector('#EDITModal');
         // const overlay = document.querySelector('.overlay');
@@ -381,20 +380,7 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
         function closeModal2() {
             modal.classList.add('hidden');
         }
-        var input = document.querySelector('input[name="tags"]');
 
-fetch('../traitement/fetchtag.php')
-.then(response => response.json())
-.then(tags => {
-  new Tagify(input, {
-    whitelist: tags, 
-    userInput: false ,
-    delimiters: ', '
-  });
-})
-.catch(error => {
-  console.error('Erreur lors de la récupération des tags :', error);
-});
 
 function afficherChampsmodale() {
             var typeCours = document.getElementById('typeCoursmodle').value;
@@ -425,6 +411,7 @@ function afficherChampsmodale() {
         }
     }    
     </script>
+     <script src="<?=URL?>/js/fetchTag.js"></script>
 </body>
 </html>
 

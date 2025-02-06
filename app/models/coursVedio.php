@@ -14,7 +14,10 @@ class coursVedio extends cours
 
     public static function validatepathVedio($vedioName, $vedioTmp)
     {
-        $dir = '../uploads/';
+        $dir = __DIR__ . "/../../public/Uploads/Vedio/"; // Chemin absolu
+        if (!is_dir($dir)) {
+            mkdir($dir, 0777, true); // Créer le dossier s'il n'existe pas
+        }
         $path = basename($vedioName);
         $finalPath = $dir . uniqid() . "_" . $path;
         $allowedExtensions = ['mp4', 'mov', 'avi', 'wmv', 'flv'];

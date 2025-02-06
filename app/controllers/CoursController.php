@@ -51,7 +51,7 @@ class CoursController
 
                 Session::ActiverSession();
                 $_SESSION['success'] = "ajout cours  avec success !";
-                header("Location: /views/mesCours.php");
+                header("Location: ../views/mesCours.php");
                 exit();
             }if($_POST['typeCours']=='document'){
                 $document=coursDocument::validateDocument($_FILES['document']['name'],$_FILES['document']['tmp_name']);
@@ -69,8 +69,10 @@ class CoursController
 //                }
                 Session::ActiverSession();
                 $_SESSION['success'] = "ajout cours  avec success !";
-                header("Location: /views/mesCours.php");
-                exit();
+                $AuthControllers = new AuthControllers();
+                $AuthControllers->versPageEnseignant();
+//                header("Location: ../views/mesCours.php");
+//                exit();
 
             }
         }

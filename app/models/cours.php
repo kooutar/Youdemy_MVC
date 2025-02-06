@@ -26,7 +26,10 @@ class  cours
 
   public static function validateImage($imagename, $imageTmp)
   {
-    $dir = '../cours/';
+      $dir = __DIR__ . "/../../public/Uploads/cours/"; // Chemin absolu
+      if (!is_dir($dir)) {
+          mkdir($dir, 0777, true); // Créer le dossier s'il n'existe pas
+      }
     $path = basename($imagename);
     $finalPath = $dir . uniqid() . "_" . $path;
     $allowedExtensions = ['png', 'jpg', 'jpeg', 'gif', 'svg'];

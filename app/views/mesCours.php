@@ -74,16 +74,14 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
                         <!-- Sample data - Replace with PHP loop -->
                          <?php
 
-                           $coursController= new CoursController();
-                          $coursVedio = $coursController->getVedioCours($prof);
                            foreach($coursVedio as $cours){
                             ?>
-                           
+
                         <tr class="border-b">
                             <td class="px-4 py-3">
                                 <img src="<?=$cours->image?>" alt="Course" class="rounded-lg w-10 h-10 object-cover">
                             </td>
-                            
+
                             <td class="px-4 py-3"><?= $cours->titre?></td>
                             <td class="px-4 py-3"><?= $cours->categorie->getCategorie()?></td>
                             <td class="px-4 py-3">Vidéo</td>
@@ -93,7 +91,7 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
                                 <span class="bg-green-100 text-green-800 px-2 py-1 rounded"><?= $cours->status?></span>
                             </td>
                             <td class="px-4 py-3 flex">
-                                <button 
+                                <button
                                     data_id="<?=$cours->idcours?>"
                                     data-titre="<?=$cours->titre?>"
                                     data-description="<?=$cours->description?>"
@@ -108,10 +106,10 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
                                     <input type="hidden" name="image" value="<?=$cours->image?>">
                                 <button name="delete"class="text-red-500 hover:text-red-700">Supprimer</button>
                                 </form>
-                               
+
                             </td>
                         </tr>
-                        <?php 
+                        <?php
                            }
                             ?>
                     </tbody>
@@ -135,8 +133,7 @@ $prof = new Enseignant($_SESSION['userData']['nom'],$_SESSION['userData']['preno
                     <tbody>
                         <!-- Sample data - Replace with PHP loop -->
                         <?php
-                        $coursDocument= new CoursController();
-                        $coursDocument = $coursDocument->getDocumentCours($prof);
+
                              foreach($coursDocument as $cours){
                             ?>
                         <tr class="border-b">

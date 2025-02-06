@@ -1,5 +1,6 @@
 <?php
-require_once __DIR__.'/../controllers/TagController.php';
+require_once __DIR__.'/../config/autoload.php';
+require_once __DIR__.'/../config/autoloadclasse.php';
 
 header("Content-Type: application/json");
 

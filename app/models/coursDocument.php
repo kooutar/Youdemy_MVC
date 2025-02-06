@@ -11,7 +11,10 @@ class coursDocument extends cours{
       }
 
       public static function validateDocument($documentName,$documentTmp){
-        $dir='../document/';
+          $dir = __DIR__ . "/../../public/Uploads/document/"; // Chemin absolu
+          if (!is_dir($dir)) {
+              mkdir($dir, 0777, true); // Créer le dossier s'il n'existe pas
+          }
         $path = basename($documentName);
         $finalPath = $dir . uniqid() . "_" . $path;
         $allowedExtensions = ['txt', 'doc', 'pdf'];

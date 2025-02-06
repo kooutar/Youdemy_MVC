@@ -61,8 +61,11 @@ class AuthControllers{
             require_once __DIR__.'/../views/connexion.php';
         }else{
             $CategorieController = new CategorieController();
+            $coursController= new CoursController();
+            $coursVedio = $coursController->getVedioCours();
             $categories = $CategorieController->getCategorie();
-//            require 'views/mesCours.php';
+            $coursDocument= new CoursController();
+             $coursDocument = $coursDocument->getDocumentCours();
             require_once __DIR__.'/../views/mesCours.php';
         }
 
